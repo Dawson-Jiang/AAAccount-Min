@@ -1,0 +1,67 @@
+<view class="page-body container" style="padding:12rpx;">
+	<form catchsubmit="formSubmit">
+		<view class="page-section">
+			<view class="weui-cells__title">类别</view>
+			<view class="weui-cells weui-cells_after-title">
+				<view class="weui-cell weui-cell_input">
+					<view class="weui-cell__bd">
+						<picker bindchange="bindCategoryChange" range="{{categoryArray}}">
+							<input disabled="true" class="weui-input" name="category" value="{{category}}" />
+						</picker>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="page-section">
+			<view class="weui-cells__title">名称</view>
+			<view class="weui-cells weui-cells_after-title">
+				<view class="weui-cell weui-cell_input">
+					<view class="weui-cell__bd">
+						<input class="weui-input" name="name" value="{{name}}" />
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="page-section">
+			<view class="weui-cells__title">数量</view>
+			<view class="weui-cells weui-cells_after-title">
+				<view class="weui-cell weui-cell_input">
+					<view class="weui-cell__bd">
+						<!-- <input class="weui-input" name="count" value="{{count}}" /> -->
+							<picker mode="multiSelector" bindchange="bindCountChange" range="{{countArray}}">
+							<input disabled="true" class="weui-input" name="count" value="{{count}}" />
+						</picker>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+		<view class="page-section">
+			<view class="weui-cells__title">说明</view>
+			<view class="weui-cells weui-cells_after-title">
+				<view class="weui-cell weui-cell_input">
+					<view class="weui-cell__bd">
+						<input class="weui-input" name="des" value="{{des}}" />
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="page-section">
+			<view class="page-section-title">状态</view>
+			<radio-group name="state">
+				<label>
+					<radio value="0" checked="{{state==0}}" />无需购买</label>
+				<label style="margin-left:48rpx;">
+					<radio value="1" checked="{{(!state&&state!=0)||state==1}}" />待购买</label>
+				<label style="margin-left:48rpx;">
+					<radio value="2" checked="{{state==2}}" />已购买</label>
+			</radio-group>
+		</view>
+
+		<button form-type="submit" style="margin-top:64rpx; width:90%;" type="primary">保存</button>
+	</form>
+</view>
