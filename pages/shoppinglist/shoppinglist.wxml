@@ -1,0 +1,20 @@
+<view style="height:120rpx;"></view>
+<block wx:for-items="{{list}}" wx:key="{{item.category}}">
+	<view class="kind-list-text" style="background:#ffffff;color:grey;padding:24rpx;">{{item.category}}</view>
+	<block wx:for-items="{{item.list}}" wx:for-item="sitem" wx:key="*item">
+		<view data-shp="{{sitem}}" bindtap="bindViewTap" bindlongpress="bindViewLongTap" style="margin-top:16rpx;" class="navigator">
+			<view class="navigator-text" style="display: flex;flex-direction:row;">
+				<view style="color:{{ sitem.state==0?'gray':(sitem.state==1?'red' :'black')}};text-decoration:{{ sitem.state==2?'line-through':'none'}}">{{sitem.name}} {{sitem.count}} </view>
+				<view style="font-size:24rpx;color:gray;margin-left:24rpx;margin-top:16rpx;"> {{sitem.des}}</view>
+			</view>
+			<view class="navigator-arrow"></view>
+		</view>
+	</block>
+
+</block>
+<view style=" position: fixed;top:0;width:100%;background:#ffffff">
+	<button bindtap="bindViewTap" style="width:90%;margin-top:12rpx;" type="primary"> 添加</button>
+</view>
+<!-- <view style=" position: fixed;bottom:0;width:100%;background:#ffffff">
+	<button bindtap="bindViewTap2" style="width:90%;margin-top:12rpx;" type="primary">登录</button>
+</view> -->

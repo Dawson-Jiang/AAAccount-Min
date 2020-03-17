@@ -27,7 +27,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.10.2",
 	"appid": "wxcff80df922f22aa7",
-	"projectname": "AAAccount",
+	"projectname": "AAAccount-Min",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

@@ -1,4 +1,6 @@
 /* reset */
+@import '/pages/weui/weui-wxss/dist/style/weui.wxss';
+
 page {
   background-color: #F8F8F8;
   height: 100%;

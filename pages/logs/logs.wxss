@@ -1,4 +1,4 @@
-@import "../common/weui.wxss";
+/* @import "../common/weui.wxss"; */
 
 .log-list {
   display: flex;
