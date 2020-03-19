@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/editshopping",
-    "pages/shoppinglist/shoppinglist"
+    "pages/shoppinglist/shoppinglist",
+    "pages/login/login",
+    "pages/editdaybook/editdaybook"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -11,6 +13,7 @@
     "navigationBarTitleText": "购物清单",
     "navigationBarTextStyle": "black"
   },
+  "debug": true,
   "tabBar": {
     "color": "#7A7E83",
     "selectedColor": "#3cc51f",

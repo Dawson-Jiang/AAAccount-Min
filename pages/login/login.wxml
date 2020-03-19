@@ -1,0 +1,6 @@
+<!--pages/login/login.wxml-->
+<view style="padding:24rpx;margin-top:120rpx;">
+ 欢迎使用AA账单
+<button wx:if="{{canIUse}}" style="width:100%;" type="primary" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+<view wx:else>请升级微信版本</view>
+</view>

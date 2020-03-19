@@ -1,7 +1,14 @@
 <!--index.wxml-->
-
- 
-
-<view style=" position: fixed;bottom:0;width:100%;background:#ffffff">
-	<button bindtap="bindViewTap" style="width:90%;margin-top:12rpx;" type="primary">登录</button>
+<view class="page">
+	<view class="page_hd">
+		<picker mode="date" fields="month" value="{{date}}" start="2015-09-01" end="2022-09-01" bindchange="bindDateChange1">
+			<button class="weui-btn" type="default">{{date}}</button>
+		</picker>
+	</view>
+	<view class="page_bd">
+		body
+	</view>
+	<view style=" position: fixed;bottom:0;width:100%;background:#ffffff">
+		<button bindtap="bindViewTap" style="width:90%;margin-top:12rpx;" type="primary">添加</button>
+	</view>
 </view>

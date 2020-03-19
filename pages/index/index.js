@@ -2,25 +2,23 @@ import AV from "../libs/av-weapp-min.js"
 
 //index.js
 //获取应用实例
-const app = getApp()
-
+const app = getApp();
+var avUser=AV.User.current;
 Page({
   data: {
-    
+    date: '2020-03'
   },
- 
-  onLoad: function () {
-  
-  },
- 
 
+  onLoad: function () {
+    login();
+
+  },
   onPullDownRefresh() {
     wx.showToast({
       title: '正在刷新...',
       icon: 'loading'
     });
   },
-
   stopPullDownRefresh() {
     wx.stopPullDownRefresh({
       complete(res) {
@@ -28,23 +26,31 @@ Page({
       }
     })
   },
- 
-
-  //事件处理函数
-  bindViewTap: function (e) {
-    // AV.User.loginWithWeapp().then(user => {
-    //   // this.globalData.user = user;
-    //   user.set("username", "我是开发者");
-    //   user.save().then(function () {
-    //     console.log("success");
-    //   }, function (e) {
-    //     console.log(e);
-    //   })
-    //   console.log(user);
-    // }).catch(console.error);
-
+  bindViewTap:function(){
     wx.navigateTo({
-      url: '../shoppinglist/shoppinglist'
+      url: '../editdaybook/editdaybook',
     })
   },
-})
+  bindDateChange1(e) {
+    this.setData({
+      date: e.detail.value
+    })
+  }
+});
+
+function login() {
+  AV.User.loginWithWeapp().then(user => {
+    console.log(user);
+    avUser=user;
+    app.globalData.username =user.get('username');
+    if (!app.globalData.username) {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }
+  }).catch(console.error);
+}
+
+function getDaybook(){
+
+}

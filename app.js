@@ -9,7 +9,10 @@ App({
       serverURLs: "https://api.leancloud.cn"
     });
   },
+  onError: function (msg) {
+    console.log(msg);
+  },
   globalData: {
-    user:{}
+    userName: ''
   }
 })
