@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="page">
+<view class="page" data-weui-theme="dark">
 	<view class="page_hd">
 		<picker mode="date" fields="month" value="{{date}}" start="2015-09-01" end="2022-09-01" bindchange="bindDateChange1">
 			<button class="weui-btn" type="default">{{date}}</button>

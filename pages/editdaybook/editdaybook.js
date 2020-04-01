@@ -5,62 +5,52 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    files: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const th = this;
+    const eventChannel = this.getOpenerEventChannel();
+    eventChannel.on('edit', function (data) {
+      th.setData({
+        ...data
+      })
+    });
+    this.setData({
+      selectFile: this.selectFile.bind(this),
+      uplaodFile: this.uplaodFile.bind(this)
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  selectFile(files) {
+    console.log('files', files)
+    // 返回false可以阻止某次文件上传
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  uplaodFile(files) {
+    console.log('upload files', files)
+    // 文件上传的函数，返回一个promise
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({urls:['https://www.baidu.com/img/baidu_jgylogo3.gif']})
+      }, 1000)
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  uploadError(e) {
+    console.log('upload error', e.detail)
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  uploadSuccess(e) {
+    console.log('upload success', e.detail)
   },
+  formSubmit(e) {
+    const value = e.detail.value;
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    var dbook;
+    if (this.data.objId) {
+      dbook = AV.Object.createWithoutData('Daybook', this.data.objId);
+    } else {
+      dbook = new AV.Object('Daybook');
+    }
   }
 })

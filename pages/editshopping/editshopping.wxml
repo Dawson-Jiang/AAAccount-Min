@@ -1,4 +1,4 @@
-<view class="page-body container" style="padding:12rpx;">
+<view class="page" style="padding:12rpx;">
 	<form catchsubmit="formSubmit">
 		<view class="page-section">
 			<view class="weui-cells__title">类别</view>
