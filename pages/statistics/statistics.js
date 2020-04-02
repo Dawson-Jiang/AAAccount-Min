@@ -1,4 +1,4 @@
-// pages/editshopping.js
+// pages/statistics/statistics.js
 Page({
 
   /**

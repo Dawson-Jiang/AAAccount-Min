@@ -14,7 +14,7 @@ Page({
     let th = this;
     let shp = e.currentTarget.dataset.shp ? e.currentTarget.dataset.shp : {}
     wx.navigateTo({
-      url: '../logs/logs',
+      url: '../editshopping/editshopping',
       events: {
         edit: function (data) {
           if (data) {//刷新数据

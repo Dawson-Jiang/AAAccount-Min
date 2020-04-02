@@ -1,10 +1,10 @@
-import  AV  from "../libs/av-weapp-min";
+import  AV  from "../libs/av-weapp-min.js";
 
 // pages/login/login.js
 
 //获取应用实例
 const app = getApp();
-const avUser=AV.User.current;
+const avUser=AV.User.current();
 
 Page({
 
@@ -23,7 +23,7 @@ Page({
   },
   bindGetUserInfo(e) {
     console.log(e.detail.userInfo)
-    avUser.set("username", e.detail.userInfo.nickName);
+    avUser.setUsername(e.detail.userInfo.nickName);
     avUser.save().then(function () {
       console.log("success");
       wx.navigateBack({

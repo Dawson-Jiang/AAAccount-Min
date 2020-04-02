@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "mp-uploader": "../weui/uploader/uploader"
+    "mp-uploader": "../weui/uploader/uploader",
+    "mp-cell": "../weui/cell/cell",
+    "mp-form": "../weui/form/form"
   }
 }

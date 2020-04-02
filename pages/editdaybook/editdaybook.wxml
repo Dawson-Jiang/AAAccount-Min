@@ -1,93 +1,61 @@
 <!--pages/editdaybook/editdaybook.wxml-->
 <view class="page">
-	<form catchsubmit="formSubmit">
+	<mp-form id="form" rules="{{rules}}" models="{{daybook}}">
+		<mp-cells>
+			<mp-cell prop="money" title="金额" ext-class="">
+				<input bindinput="formInputChange" data-field="money" class="weui-input" placeholder="请输入消费金额" />
+			</mp-cell>
+			<view style="background:#CCCCCC;width:100%;height:1rpx;"></view>
 
-		<view class="weui-cells__title">金额</view>
+			<mp-cell title="类别"  ext-class="weui-cell_select weui-cell_select-after">
+				<picker bindchange="bindCountryChange" value="{{categoryIndex}}" range="{{categorys}}">
+					<view class="weui-select">{{categorys[categoryIndex]}}</view>
+				</picker>
+			</mp-cell>
+			<view style="background:#CCCCCC;width:100%;height:1rpx;"></view>
+
+			<mp-cell title="付款人" wx:if="{{is_family}}"  ext-class="weui-cell_select weui-cell_select-after">
+				<picker bindchange="bindCountryChange" value="{{payerIndex}}" range="{{members}}">
+					<view class="weui-select">{{members[payerIndex]}}</view>
+				</picker>
+			</mp-cell>
+			<view wx:if="{{is_family}}" style="background:#CCCCCC;width:100%;height:1rpx;"></view>
+
+			<mp-cell title="消费人员" wx:if="{{is_family}}"  ext-class="weui-cell_select weui-cell_select-after">
+				<view class="weui-select" bindtap="selectConsumer">{{consumers}}</view>
+			</mp-cell>
+			<view wx:if="{{is_family}}" style="background:#CCCCCC;width:100%;height:1rpx;"></view>
+
+			<mp-cell prop="date" title="日期" ext-class="">
+				<picker data-field="date" mode="date" value="{{date}}" start="2017-01-01" end="2025-12-31" bindchange="bindDateChange">
+					<view class="weui-input">{{date}}</view>
+				</picker>
+			</mp-cell>
+			<view style="background:#CCCCCC;width:100%;height:1rpx;"></view>
+
+			<mp-cell title="备注" ext-class="">
+				<input bindinput="formInputChange" data-field="des" class="weui-input" placeholder="请输入备注" />
+			</mp-cell>
+			<view style="background:#CCCCCC;width:100%;height:1rpx;"></view>
+
+			<mp-cell>
+				<mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{pics}}" max-count="3"></mp-uploader>
+			</mp-cell>
+		</mp-cells>
+		<!-- <view class="weui-cells__title">备注</view>
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell weui-cell_input">
 				<view class="weui-cell__bd">
-					<input class="weui-input" name="money" value="{{money}}" />
+					<input class="weui-input" name="mark" value="{{des}}" />
 				</view>
 			</view>
-		</view>
+		</view> -->
 
-		<view wx:if="{{is_family}}" class="weui-cells__group">
-			<view class="weui-cells__title">家庭</view>
-			<view class="weui-cells weui-cells_after-title">
-				<view class="weui-cell weui-cell_input">
-					<view class="weui-cell__bd">
-						<picker bindchange="bindCategoryChange" value="{{family}}" range="{{familys}}">
-							<input disabled="true" class="weui-input" name="family" value="{{family}}" />
-						</picker>
-					</view>
-				</view>
-			</view>
-		</view>
-
-		<view class="weui-cells__title">类别</view>
+		<!-- <view class="weui-cells__title">图片</view>
 		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell weui-cell_input">
-				<view class="weui-cell__bd">
-					<picker bindchange="bindCategoryChange" value="{{category}}" range="{{categorys}}">
-						<input disabled="true" class="weui-input" name="category" value="{{category}}" />
-					</picker>
-				</view>
-			</view>
-		</view>
-
-		<view wx:if="{{is_family}}" class="weui-cells__group">
-			<view class="weui-cells__title">付款人</view>
-			<view class="weui-cells weui-cells_after-title">
-				<view class="weui-cell weui-cell_input">
-					<view class="weui-cell__bd">
-						<picker bindchange="bindCategoryChange" value="{{payer}}" range="{{members}}">
-							<input disabled="true" class="weui-input" name="payer" value="{{payer}}" />
-						</picker>
-					</view>
-				</view>
-			</view>
-		</view>
-
-		<view wx:if="{{is_family}}" class="weui-cells__group">
-			<view class="weui-cells__title">消费成员</view>
-			<view class="weui-cells weui-cells_after-title">
-				<view class="weui-cell weui-cell_input">
-					<view class="weui-cell__bd">
-						<picker bindchange="bindCategoryChange" value="{{consumer}}" range="{{consumers}}">
-							<input disabled="true" class="weui-input" name="consumer" value="{{consumer}}}" />
-						</picker>
-					</view>
-				</view>
-			</view>
-		</view>
-
-		<view wx:if="{{is_family}}" class="weui-cells__group">
-			<view class="weui-cells__title">日期</view>
-			<view class="weui-cells weui-cells_after-title">
-				<view class="weui-cell weui-cell_input">
-					<view class="weui-cell__bd">
-						<picker mode="date" bindchange="bindCategoryChange" value="{{date}}">
-							<input disabled="true" class="weui-input" name="date" value="{{date}}}" />
-						</picker>
-					</view>
-				</view>
-			</view>
-		</view>
-
-		<view class="weui-cells__title">备注</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell weui-cell_input">
-				<view class="weui-cell__bd">
-					<input class="weui-input" name="mark" value="{{mark}}" />
-				</view>
-			</view>
-		</view>
-
-		<view class="weui-cells__title">图片</view>
-		<view class="weui-cells weui-cells_after-title">
-			<mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{files}}" max-count="3"></mp-uploader>
-		</view>
+			<mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{pics}}" max-count="3"></mp-uploader>
+		</view> -->
 
 		<button form-type="submit" style="margin-top:64rpx; width:90%;" type="primary">保存</button>
-	</form>
+	</mp-form>
 </view>

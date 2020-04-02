@@ -42,11 +42,11 @@ Page({
       shp = new AV.Object('ShoppingList');
     }
 
-    shp.set("category", e.detail.value.category);
-    shp.set("name", e.detail.value.name);
-    shp.set("count", e.detail.value.count);
-    shp.set("des", e.detail.value.des);
-    shp.set("state", Number(e.detail.value.state));
+    shp.set("category", v.category);
+    shp.set("name", v.name);
+    shp.set("count", v.count);
+    shp.set("des", v.des);
+    shp.set("state", Number(v.state));
     // 将对象保存到云端
     shp.save().then(function (tobj) {
       // 成功保存之后，执行其他逻辑
